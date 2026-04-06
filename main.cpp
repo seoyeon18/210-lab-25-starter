@@ -1,4 +1,22 @@
 #include <chrono>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+    vector<string> codes;
+    ifstream fin("codes.txt");
+    string line;
+
+    while (getline(fin, line)) {
+        codes.push_back(line);
+    }
+
+    cout <<codes.size()<< endl;
+
 
 auto start = chrono::high_resolution_clock::now();
 
@@ -8,9 +26,14 @@ for (auto &s : codes) {
 }
 
 auto end = chrono::high_resolution_clock::now();
-auto v_read = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+long long vectorTime = 
+    chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 
-cout << "Vector Read: " << v_read << endl;
+cout << "Vector Read: " <<vectorTime << endl;
+
+return 0;
+}
+
 /* syntax examples:
 auto start = high_resolution_clock::now()
 auto end = high_resolution_clock::now()
