@@ -73,11 +73,42 @@ long long vectorTime =
 
     long long setSortTime = -1;
 
+    vector<string> vecInsert = codes;
+    start = chrono::high_resolution_clock::now();
+    vecInsert.insert(vecInsert.begin() + vecInsert.size() /2 , "ahhhh");
+    end = chrono::high_resolution_clock::now();
+    long long vectorInsertTime =
+        chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+
+    list<string> listInsert(codes.begin(), codes.end());
+    auto listInsertPos = listInsert.begin();
+    advance(listInsertPos, listInsert.size() / 2);
+    start = chrono::high_resolution_clock::now();
+    end = chrono::high_resolution_clock::now() ;
+    long long listInsertTime =
+        chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+
+    set<string> setInsert(codes.begin(), codes.end());
+    start = chrono::high_resolution_clock::now();
+    end = chrono::high_resolution_clock::now() ;
+    long long setInsertTime =
+        chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+
 
 
 cout << "Vector Read: "     << vectorTime << endl;
 cout << "List read time:   " << listReadTime << " ns" << endl;
 cout << "Set read time:    " << setReadTime << " ns" << endl;
+
+
+cout << "Vector sort time:   " << vectorSortTime << " ns" << endl;
+cout << "List sort time:     " << listSortTime << " ns" << endl;
+cout << "Set sort time:      " << setSortTime << endl;
+
+cout << "Vector insert time: " << vectorInsertTime << " ns" << endl;
+cout << "List insert time:   " << listInsertTime << " ns" << endl;
+cout << "Set insert time:    " << setInsertTime << " ns" << endl;
+
 return 0;
 }
 
