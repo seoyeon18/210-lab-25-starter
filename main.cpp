@@ -94,7 +94,30 @@ long long vectorTime =
     long long setInsertTime =
         chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 
+    vector<string> vecDelete = codes;
+    start = chrono::high_resolution_clock::now();
+    vecDelete.erase(vecDelete.begin() + vecDelete.size() / 2);
+    end = chrono::high_resolution_clock::now();
+    long long vectorDeleteTime =
+        chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 
+    list<string> listDelete(codes.begin(), codes.end());
+    auto listDeletePos = listDelete.begin();
+    advance(listDeletePos, listDelete.size() / 2);
+    start = chrono::high_resolution_clock::now();
+    listDelete.erase(listDeletePos);
+    end = chrono::high_resolution_clock::now();
+    long long listDeleteTime =
+        chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+
+    set<string> setDelete(codes.begin(), codes.end());
+    auto setDeletePos = setDelete.begin();
+    advance(setDeletePos, setDelete.size() / 2);
+    start = chrono::high_resolution_clock::now();
+    setDelete.erase(setDeletePos);
+    end = chrono::high_resolution_clock::now();
+    long long setDeleteTime =
+        chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 
 cout << "Vector Read: "     << vectorTime << endl;
 cout << "List read time:   " << listReadTime << " ns" << endl;
